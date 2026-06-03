@@ -222,8 +222,7 @@
   <div class="filter-bar">
     <span class="filter-group-label">Cargo</span>
     <div class="filter-btns">
-      <button class="filter-btn active-todos" onclick="filtrarCargo('todos', this)">Todos</button>
-      <button class="filter-btn" onclick="filtrarCargo('epf', this)">EPF</button>
+      <button class="filter-btn active-epf" onclick="filtrarCargo('epf', this)">EPF</button>
       <button class="filter-btn" onclick="filtrarCargo('dpf', this)">DPF</button>
     </div>
   </div>
@@ -365,11 +364,7 @@ function filtrarCargo(cargo, btn) {
   var dpfCol = document.querySelector('.dpf');
   var grid   = document.getElementById('grid');
 
-  if (cargo === 'todos') {
-    epfCol.classList.remove('col-hidden');
-    dpfCol.classList.remove('col-hidden');
-    grid.style.gridTemplateColumns = '1fr 1fr';
-  } else if (cargo === 'epf') {
+  if (cargo === 'epf') {
     epfCol.classList.remove('col-hidden');
     dpfCol.classList.add('col-hidden');
     grid.style.gridTemplateColumns = '1fr';
@@ -379,6 +374,12 @@ function filtrarCargo(cargo, btn) {
     grid.style.gridTemplateColumns = '1fr';
   }
 }
+
+// Inicia com EPF visível e DPF oculto
+window.onload = function() {
+  document.querySelector('.dpf').classList.add('col-hidden');
+  document.getElementById('grid').style.gridTemplateColumns = '1fr';
+};
 </script>
 </body>
 </html>
