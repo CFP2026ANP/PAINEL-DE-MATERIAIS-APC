@@ -156,6 +156,40 @@
   .tag.prod { background: #fef9c3; color: #854d0e; }
   .tag.nao  { background: #f3f4f6; color: #9ca3af; border: 1px solid #e5e7eb; }
 
+  /* ── FILTRO ── */
+  .filter-bar {
+    margin-bottom: 24px;
+  }
+  .filter-group-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #aaa;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .filter-btns { display: flex; gap: 8px; }
+  .filter-btn {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: 1.5px solid #d5cfc5;
+    background: #fff;
+    cursor: pointer;
+    color: #666;
+    transition: all .15s;
+    font-family: inherit;
+  }
+  .filter-btn:hover { border-color: #aaa; color: #333; }
+  .filter-btn.active-todos { background: #0b2545; border-color: #0b2545; color: #fff; }
+  .filter-btn.active-epf   { background: #d4f0e0; border-color: #1f7a4d; color: #1a6b3c; }
+  .filter-btn.active-dpf   { background: #ddeaf9; border-color: #2d6cdf; color: #1a4a8a; }
+
+  /* ocultar coluna */
+  .col-hidden { display: none; }
+
   /* ── FOOTER ── */
   footer {
     text-align: center;
@@ -184,7 +218,17 @@
 </header>
 
 <div class="container">
-  <div class="two-col">
+
+  <div class="filter-bar">
+    <span class="filter-group-label">Cargo</span>
+    <div class="filter-btns">
+      <button class="filter-btn active-todos" onclick="filtrarCargo('todos', this)">Todos</button>
+      <button class="filter-btn" onclick="filtrarCargo('epf', this)">EPF</button>
+      <button class="filter-btn" onclick="filtrarCargo('dpf', this)">DPF</button>
+    </div>
+  </div>
+
+  <div class="two-col" id="grid">
 
     <!-- ══ EPF ══ -->
     <div class="epf">
@@ -311,5 +355,30 @@
   CFP 2026 · DIREN-ANP · Polícia Federal — Material restrito ao uso dos professores
 </footer>
 
+<script>
+function filtrarCargo(cargo, btn) {
+  // Atualiza botão ativo
+  document.querySelectorAll('.filter-btn').forEach(b => b.className = 'filter-btn');
+  btn.classList.add('active-' + cargo);
+
+  var epfCol = document.querySelector('.epf');
+  var dpfCol = document.querySelector('.dpf');
+  var grid   = document.getElementById('grid');
+
+  if (cargo === 'todos') {
+    epfCol.classList.remove('col-hidden');
+    dpfCol.classList.remove('col-hidden');
+    grid.style.gridTemplateColumns = '1fr 1fr';
+  } else if (cargo === 'epf') {
+    epfCol.classList.remove('col-hidden');
+    dpfCol.classList.add('col-hidden');
+    grid.style.gridTemplateColumns = '1fr';
+  } else {
+    epfCol.classList.add('col-hidden');
+    dpfCol.classList.remove('col-hidden');
+    grid.style.gridTemplateColumns = '1fr';
+  }
+}
+</script>
 </body>
 </html>
