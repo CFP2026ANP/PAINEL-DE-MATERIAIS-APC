@@ -75,7 +75,7 @@
   .col-title.epf { border-color: var(--green); }
   .col-title.dpf { border-color: var(--blue); }
   .col-title-left { display: flex; flex-direction: column; }
-  .col-sigla { font-size: 17px; font-weight: 500; display: block; }
+  .col-sigla { font-size: 20px; font-weight: 600; display: block; }
   .epf .col-sigla { color: var(--green-text); }
   .dpf .col-sigla { color: var(--blue-text); }
   .col-sub { font-size: 11px; color: #888; display: block; }
@@ -119,24 +119,25 @@
 
   .card-info { display: flex; flex-direction: column; }
   .card-code {
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--ink);
+    font-size: 16px;
+    font-weight: 600;
     display: block;
     margin-bottom: 2px;
   }
-  .off .card-code { color: #aaa; }
+  .avail.epf .card-code { color: var(--green-text); }
+  .avail.dpf .card-code { color: var(--blue-text); }
+  .off .card-code { color: #bbb; }
   .card-name {
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--ink);
+    font-size: 13px;
+    font-weight: 600;
+    color: #0d1117;
     display: block;
     line-height: 1.4;
     margin-bottom: 2px;
   }
   .off .card-name { color: #aaa; }
   .card-weeks {
-    font-size: 10px;
+    font-size: 11px;
     color: #888;
     display: block;
     margin-bottom: 6px;
