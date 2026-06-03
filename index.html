@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Materiais APC — CFP 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Source+Sans+3:wght@400;500;600&display=swap');
+  @import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css');
+
+  :root {
+    --paper: #f4f1ea;
+    --card: #ffffff;
+    --line: #e0d9cc;
+    --ink: #1b1f24;
+    --navy: #0b2545;
+    --gold: #c9a227;
+    --gold-soft: #e7d293;
+    --green: #1f7a4d;
+    --green-light: #d4f0e0;
+    --green-text: #1a6b3c;
+    --blue: #2d6cdf;
+    --blue-light: #ddeaf9;
+    --blue-text: #1a4a8a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, var(--navy) 0%, #13315c 100%);
+    color: #fff;
+    padding: 28px 24px 22px;
+    border-bottom: 4px solid var(--gold);
+  }
+  .h-wrap { max-width: 960px; margin: 0 auto; }
+  .crest { font-size: 12px; letter-spacing: 3px; color: var(--gold-soft); font-weight: 600; text-transform: uppercase; margin-bottom: 8px; }
+  header h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(20px, 4vw, 34px);
+    font-weight: 600;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .subtitle { font-size: 14px; color: #cdd9e8; }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 960px; margin: 0 auto; padding: 32px 24px 60px; }
+
+  /* ── GRID DUAS COLUNAS ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  /* ── TÍTULO DE COLUNA ── */
+  .col-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid;
+  }
+  .col-title.epf { border-color: var(--green); }
+  .col-title.dpf { border-color: var(--blue); }
+  .col-title-left { display: flex; flex-direction: column; }
+  .col-sigla { font-size: 17px; font-weight: 500; display: block; }
+  .epf .col-sigla { color: var(--green-text); }
+  .dpf .col-sigla { color: var(--blue-text); }
+  .col-sub { font-size: 11px; color: #888; display: block; }
+  .col-badge {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .epf .col-badge { background: var(--green-light); color: var(--green-text); }
+  .dpf .col-badge { background: var(--blue-light); color: var(--blue-text); }
+
+  /* ── CARDS ── */
+  .col-grid { display: flex; flex-direction: column; gap: 10px; }
+
+  .mat-card {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .mat-card.avail { cursor: pointer; }
+  .mat-card.avail:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  .mat-card.avail.epf { border-color: var(--green); }
+  .mat-card.avail.dpf { border-color: var(--blue); }
+  .mat-card.off { cursor: default; opacity: .6; }
+
+  .card-icon { flex-shrink: 0; font-size: 22px; line-height: 1; }
+  .avail.epf .card-icon { color: var(--green); }
+  .avail.dpf .card-icon { color: var(--blue); }
+  .off .card-icon { color: #ccc; }
+
+  .card-info { display: flex; flex-direction: column; }
+  .card-code {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 2px;
+  }
+  .off .card-code { color: #aaa; }
+  .card-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink);
+    display: block;
+    line-height: 1.4;
+    margin-bottom: 2px;
+  }
+  .off .card-name { color: #aaa; }
+  .card-weeks {
+    font-size: 10px;
+    color: #888;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .off .card-weeks { color: #bbb; }
+
+  .tag {
+    font-size: 10px;
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-weight: 500;
+    width: fit-content;
+  }
+  .tag.disp { background: var(--green-light); color: var(--green-text); }
+  .tag.prod { background: #fef9c3; color: #854d0e; }
+  .tag.nao  { background: #f3f4f6; color: #9ca3af; border: 1px solid #e5e7eb; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: #999;
+    border-top: 1px solid var(--line);
+  }
+
+  /* ── RESPONSIVO ── */
+  @media (max-width: 600px) {
+    .two-col { grid-template-columns: 1fr; gap: 32px; }
+    .container { padding: 24px 16px 50px; }
+    header { padding: 22px 16px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-wrap">
+    <div class="crest">Polícia Federal · DIREN-ANP · CFP 2026</div>
+    <h1>Materiais de Estudo — APC</h1>
+    <div class="subtitle">Atividade Policial em Campo · Material do Professor</div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="two-col">
+
+    <!-- ══ EPF ══ -->
+    <div class="epf">
+      <div class="col-title epf">
+        <div class="col-title-left">
+          <span class="col-sigla">EPF</span>
+          <span class="col-sub">Escrivão de Polícia Federal</span>
+        </div>
+        <span class="col-badge">Escrivão</span>
+      </div>
+      <div class="col-grid">
+
+        <a class="mat-card avail epf" href="https://cfp2026anp.github.io/EPF-M1.1-Sobreaviso/" target="_blank">
+          <i class="ti ti-file-alert card-icon" aria-hidden="true"></i>
+          <div class="card-info">
+            <span class="card-code">M1.1</span>
+            <span class="card-name">Ocorrências de Sobreaviso</span>
+            <span class="card-weeks">Semana 3 → Semana 6</span>
+            <span class="tag disp">Disponível</span>
+          </div>
+        </a>
+
+        <a class="mat-card avail epf" href="https://cfp2026anp.github.io/EPF-M2.1-Levantamento-Endereco/" target="_blank">
+          <i class="ti ti-map-pin card-icon" aria-hidden="true"></i>
+          <div class="card-info">
+            <span class="card-code">M2.1</span>
+            <span class="card-name">Levantamento de Endereço (Eleitoral)</span>
+            <span class="card-weeks">Semana 4 → Semana 4</span>
+            <span class="tag disp">Disponível</span>
+          </div>
+        </a>
+
+        <div class="mat-card off">
+          <i class="ti ti-circle-off card-icon" aria-hidden="true"></i>
+          <div class="card-info">
+            <span class="card-code">M3.1</span>
+            <span class="card-name">Fonte Humana</span>
+            <span class="card-weeks">—</span>
+            <span class="tag nao">Não iniciado</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══ DPF ══ -->
+    <div class="dpf">
+      <div class="col-title dpf">
+        <div class="col-title-left">
+          <span class="col-sigla">DPF</span>
+          <span class="col-sub">Delegado de Polícia Federal</span>
+        </div>
+        <span class="col-badge">Delegado</span>
+      </div>
+      <div class="col-grid">
+
+        <div class="mat-card off">
+          <i class="ti ti-circle-off card-icon" aria-hidden="true"></i>
+          <div class="card-info">
+            <span class="card-code">M1.1</span>
+            <span class="card-name">Sobreaviso</span>
+            <span class="card-weeks">Semana 4 → Semana 4</span>
+            <span class="tag nao">Não iniciado</span>
+          </div>
+        </div>
+
+        <div class="mat-card off">
+          <i class="ti ti-circle-off card-icon" aria-hidden="true"></i>
+          <div class="card-info">
+            <span class="card-code">M3.1</span>
+            <span class="card-name">Fonte Humana</span>
+            <span class="card-weeks">—</span>
+            <span class="tag nao">Não iniciado</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  CFP 2026 · DIREN-ANP · Polícia Federal — Material restrito ao uso dos professores
+</footer>
+
+</body>
+</html>
