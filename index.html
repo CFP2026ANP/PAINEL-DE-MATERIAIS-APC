@@ -3,384 +3,191 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Materiais APC — CFP 2026</title>
+<title>APC — Material do Professor · CFP 2026</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Source+Sans+3:wght@400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap');
   @import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css');
 
-  :root {
-    --paper: #f4f1ea;
-    --card: #ffffff;
-    --line: #e0d9cc;
-    --ink: #1b1f24;
-    --navy: #0b2545;
-    --gold: #c9a227;
-    --gold-soft: #e7d293;
-    --green: #1f7a4d;
-    --green-light: #d4f0e0;
-    --green-text: #1a6b3c;
-    --blue: #2d6cdf;
-    --blue-light: #ddeaf9;
-    --blue-text: #1a4a8a;
+  :root{
+    --manila:#d9c89e; --manila-dark:#c4b078; --paper:#f3ecd8;
+    --ink:#26211a; --red:#9e2b25; --stamp:#1d4e89; --green:#2f6b46;
   }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Source Sans 3',sans-serif;color:var(--ink);min-height:100vh;
+    background:#2a2620;
+    background-image:radial-gradient(circle at 50% 0,#3a352c,#1c1813);
+  }
+  .typewriter{font-family:'Source Sans 3',sans-serif}
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  /* ====== TELA INICIAL ====== */
+  #home{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;gap:34px}
+  .home-crest{text-align:center;color:var(--manila)}
+  .home-crest .ti{font-size:46px;color:var(--manila-dark)}
+  .home-logo{width:clamp(180px,40vw,280px);height:auto;display:block;margin:0 auto 6px;
+    filter:drop-shadow(0 6px 16px rgba(0,0,0,.45))}
+  .home-crest h1{font-family:'Oswald',sans-serif;font-weight:700;letter-spacing:2px;font-size:clamp(30px,7vw,62px);text-transform:uppercase;margin-top:8px;line-height:1.04;max-width:14ch;margin-left:auto;margin-right:auto}
+  .home-tagline{font-family:'Oswald',sans-serif;color:var(--red);font-weight:600;letter-spacing:4px;font-size:clamp(13px,2.4vw,18px);text-transform:uppercase;margin-top:10px}
+  .home-crest p{font-family:'Source Sans 3',sans-serif;color:#9c8f70;margin-top:16px;letter-spacing:2px;font-size:12px;font-weight:600;text-transform:uppercase}
+  .folders{display:flex;gap:30px;flex-wrap:wrap;justify-content:center}
+  .folder{
+    width:300px;max-width:86vw;cursor:pointer;text-decoration:none;
+    background:var(--manila);border-radius:4px 12px 4px 4px;
+    padding:28px 26px 30px;position:relative;color:var(--ink);
+    box-shadow:12px 12px 0 #f3ecd8;
+    transition:transform .2s, box-shadow .2s;
+    border-top:18px solid var(--manila-dark);
+  }
+  .folder::before{content:"";position:absolute;top:-18px;left:0;width:46%;height:18px;background:var(--manila-dark);border-radius:8px 8px 0 0}
+  .folder:hover{transform:translate(-4px,-4px);box-shadow:18px 18px 0 #f3ecd8}
+  .folder .stamp{
+    position:absolute;top:18px;right:18px;border:3px solid var(--red);color:var(--red);
+    font-family:'Oswald',sans-serif;font-weight:700;font-size:12px;letter-spacing:2px;
+    padding:4px 8px;border-radius:4px;transform:rotate(8deg);opacity:.85
+  }
+  .folder .tab-code{font-family:'Oswald',sans-serif;font-size:60px;font-weight:700;line-height:1;color:#3a3122}
+  .folder .tab-name{font-family:'Source Sans 3',sans-serif;font-size:17px;margin-top:6px}
+  .folder .tab-sub{margin-top:18px;font-size:13px;color:#5e533c;border-top:1px dashed #8a7c5a;padding-top:10px;font-family:'Source Sans 3',sans-serif}
+  .folder .open-hint{margin-top:14px;font-size:12px;font-weight:700;letter-spacing:1px;color:var(--red);text-transform:uppercase}
 
-  body {
-    font-family: 'Source Sans 3', system-ui, sans-serif;
-    background: var(--paper);
-    color: var(--ink);
-    min-height: 100vh;
-  }
+  /* ====== VISTA DE MATERIAIS ====== */
+  .view{display:none;min-height:100vh;padding:0 0 60px}
+  .view.active{display:block;animation:fade .4s}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+  .view-head{background:var(--paper);border-bottom:5px solid var(--ink);padding:22px 24px}
+  .view-head .wrap{max-width:880px;margin:0 auto;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .back{cursor:pointer;background:var(--ink);color:var(--paper);border:none;font-family:'Source Sans 3',sans-serif;
+    padding:10px 16px;border-radius:4px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .back:hover{background:#000}
+  .view-title{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+  .view-title b{font-size:30px;display:block;line-height:1}
+  .view-title span{font-size:14px;color:#6b5d40;font-family:'Source Sans 3',sans-serif;text-transform:none}
+  .classified{margin-left:auto;border:3px solid var(--red);color:var(--red);font-family:'Oswald',sans-serif;
+    font-weight:700;letter-spacing:2px;padding:6px 12px;transform:rotate(-3deg);font-size:13px}
 
-  /* ── HEADER ── */
-  header {
-    background: linear-gradient(135deg, var(--navy) 0%, #13315c 100%);
-    color: #fff;
-    padding: 28px 24px 22px;
-    border-bottom: 4px solid var(--gold);
+  .files{max-width:880px;margin:30px auto 0;padding:0 24px;display:flex;flex-direction:column;gap:16px}
+  .file{
+    display:flex;gap:18px;align-items:flex-start;text-decoration:none;color:var(--ink);
+    background:var(--paper);border-radius:4px;padding:20px 22px;position:relative;
+    box-shadow:0 10px 24px rgba(0,0,0,.35);border-left:8px solid var(--green);
+    transition:transform .15s, box-shadow .15s;
   }
-  .h-wrap { max-width: 960px; margin: 0 auto; }
-  .crest { font-size: 12px; letter-spacing: 3px; color: var(--gold-soft); font-weight: 600; text-transform: uppercase; margin-bottom: 8px; }
-  header h1 {
-    font-family: 'Oswald', sans-serif;
-    font-size: clamp(20px, 4vw, 34px);
-    font-weight: 600;
-    letter-spacing: .5px;
-    text-transform: uppercase;
-    line-height: 1.1;
-    margin-bottom: 6px;
-  }
-  .subtitle { font-size: 14px; color: #cdd9e8; }
+  .file:hover{transform:translateX(6px);box-shadow:0 14px 30px rgba(0,0,0,.45)}
+  .file.locked{border-left-color:#9a9078;opacity:.6;pointer-events:none}
+  .file .fcode{font-family:'Oswald',sans-serif;font-weight:700;font-size:34px;line-height:1;min-width:78px;color:#2f2a20}
+  .file .fbody{flex:1}
+  .file .fname{font-size:19px;font-weight:600}
+  .file .fweeks{font-family:'Source Sans 3',sans-serif;font-size:13px;color:#6b5d40;margin-top:4px}
+  .badge{display:inline-block;margin-top:10px;font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:1px;
+    font-size:12px;padding:4px 12px;border-radius:3px}
+  .badge.ok{background:var(--green);color:#fff}
+  .badge.no{background:#d8cda8;color:#7a6e4f;border:1px dashed #9a8a60}
+  .file .ricon{font-size:30px;color:var(--green);opacity:.5}
+  .file.locked .ricon{color:#9a9078}
+  .view-foot{text-align:center;color:#7a6e4f;font-family:'Source Sans 3',sans-serif;font-size:12px;margin-top:40px;padding:0 20px}
 
-  /* ── CONTAINER ── */
-  .container { max-width: 960px; margin: 0 auto; padding: 32px 24px 60px; }
-
-  /* ── GRID DUAS COLUNAS ── */
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-  }
-
-  /* ── TÍTULO DE COLUNA ── */
-  .col-title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 14px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid;
-  }
-  .col-title.epf { border-color: var(--green); }
-  .col-title.dpf { border-color: var(--blue); }
-  .col-title-left { display: flex; flex-direction: column; }
-  .col-sigla { font-size: 28px; font-weight: 700; display: block; }
-  .epf .col-sigla { color: var(--green-text); }
-  .dpf .col-sigla { color: var(--blue-text); }
-  .col-sub { font-size: 16px; font-weight: 600; color: #444; display: block; margin-top: 2px; }
-  .col-badge {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    padding: 3px 10px;
-    border-radius: 20px;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-  .epf .col-badge { background: var(--green-light); color: var(--green-text); }
-  .dpf .col-badge { background: var(--blue-light); color: var(--blue-text); }
-
-  /* ── CARDS ── */
-  .col-grid { display: flex; flex-direction: column; gap: 10px; }
-
-  .mat-card {
-    background: var(--card);
-    border-radius: 12px;
-    border: 1px solid var(--line);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 18px 20px;
-    text-decoration: none;
-    color: inherit;
-    transition: transform .15s, box-shadow .15s;
-  }
-  .mat-card.avail { cursor: pointer; }
-  .mat-card.avail:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,.08); }
-  .mat-card.avail.epf { border-color: var(--green); }
-  .mat-card.avail.dpf { border-color: var(--blue); }
-  .mat-card.off { cursor: default; opacity: .6; }
-
-  .card-icon { flex-shrink: 0; font-size: 28px; line-height: 1; }
-  .avail.epf .card-icon { color: var(--green); }
-  .avail.dpf .card-icon { color: var(--blue); }
-  .off .card-icon { color: #ccc; }
-
-  .card-info { display: flex; flex-direction: column; }
-  .card-code {
-    font-size: 23px;
-    font-weight: 700;
-    display: block;
-    margin-bottom: 3px;
-  }
-  .avail.epf .card-code { color: var(--green-text); }
-  .avail.dpf .card-code { color: var(--blue-text); }
-  .off .card-code { color: #bbb; }
-  .card-name {
-    font-size: 17px;
-    font-weight: 600;
-    color: #0d1117;
-    display: block;
-    line-height: 1.4;
-    margin-bottom: 3px;
-  }
-  .off .card-name { color: #aaa; }
-  .card-weeks {
-    font-size: 14px;
-    color: #888;
-    display: block;
-    margin-bottom: 8px;
-  }
-  .off .card-weeks { color: #bbb; }
-
-  .tag {
-    font-size: 13px;
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-weight: 500;
-    width: fit-content;
-  }
-  .tag.disp { background: var(--green-light); color: var(--green-text); }
-  .tag.prod { background: #fef9c3; color: #854d0e; }
-  .tag.nao  { background: #f3f4f6; color: #9ca3af; border: 1px solid #e5e7eb; }
-  .tag.desat { background: #fee2e2; color: #b91c1c; }
-
-  /* ── FILTRO ── */
-  .filter-bar {
-    margin-bottom: 24px;
-  }
-  .filter-group-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: #aaa;
-    display: block;
-    margin-bottom: 8px;
-  }
-  .filter-btns { display: flex; gap: 8px; }
-  .filter-btn {
-    font-size: 14px;
-    font-weight: 600;
-    padding: 8px 20px;
-    border-radius: 8px;
-    border: 1.5px solid #d5cfc5;
-    background: #fff;
-    cursor: pointer;
-    color: #666;
-    transition: all .15s;
-    font-family: inherit;
-  }
-  .filter-btn:hover { border-color: #aaa; color: #333; }
-  .filter-btn.active-todos { background: #0b2545; border-color: #0b2545; color: #fff; }
-  .filter-btn.active-epf   { background: #d4f0e0; border-color: #1f7a4d; color: #1a6b3c; }
-  .filter-btn.active-dpf   { background: #ddeaf9; border-color: #2d6cdf; color: #1a4a8a; }
-
-  /* ocultar coluna */
-  .col-hidden { display: none; }
-
-  /* ── FOOTER ── */
-  footer {
-    text-align: center;
-    padding: 24px;
-    font-size: 12px;
-    color: #999;
-    border-top: 1px solid var(--line);
-  }
-
-  /* ── RESPONSIVO ── */
-  @media (max-width: 600px) {
-    .two-col { grid-template-columns: 1fr; gap: 32px; }
-    .container { padding: 24px 16px 50px; }
-    header { padding: 22px 16px 18px; }
+  /* ====== MOBILE: cards EPF/DPF menores, lado a lado ====== */
+  @media (max-width:600px){
+    #home{gap:24px;padding:32px 16px}
+    .folders{gap:12px;width:100%}
+    .folder{width:calc(50% - 6px);max-width:none;padding:16px 13px 18px;border-top-width:12px;border-radius:3px 9px 3px 3px}
+    .folder::before{height:12px;top:-12px}
+    .folder .tab-code{font-size:38px}
+    .folder .tab-name{font-size:12px;line-height:1.25;margin-top:4px}
+    .folder .tab-sub{font-size:10.5px;margin-top:12px;padding-top:8px}
+    .folder .open-hint{font-size:10px;margin-top:10px;letter-spacing:.5px}
   }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="h-wrap">
-    <div class="crest">Polícia Federal · DIREN-ANP · CFP 2026</div>
-    <h1>Materiais de Estudo — APC</h1>
-    <div class="subtitle">Atividade Policial em Campo · Material do Professor</div>
+<!-- ===== HOME ===== -->
+<section id="home">
+  <div class="home-crest">
+    <img class="home-logo" src="brasao-pf-anp.png" alt="Polícia Federal · Academia Nacional de Polícia">
+    <h1>Atividade Policial de Campo</h1>
+    <div class="home-tagline">Material do Professor</div>
+    <p>Polícia Federal · DIREN-ANP · CFP 2026 — selecione o cargo</p>
   </div>
-</header>
-
-<div class="container">
-
-  <div class="filter-bar">
-    <span class="filter-group-label">Cargo</span>
-    <div class="filter-btns">
-      <button class="filter-btn active-epf" onclick="filtrarCargo('epf', this)">EPF</button>
-      <button class="filter-btn" onclick="filtrarCargo('dpf', this)">DPF</button>
-    </div>
+  <div class="folders">
+    <a class="folder" onclick="abrir('epf')">
+      <div class="tab-code">EPF</div>
+      <div class="tab-name">Escrivão de Polícia Federal</div>
+      <div class="tab-sub">Atividade Policial em Campo<br>Material do Professor</div>
+      <div class="open-hint">▸ abrir materiais</div>
+    </a>
+    <a class="folder" onclick="abrir('dpf')">
+      <div class="tab-code">DPF</div>
+      <div class="tab-name">Delegado de Polícia Federal</div>
+      <div class="tab-sub">Atividade Policial em Campo<br>Material do Professor</div>
+      <div class="open-hint">▸ abrir materiais</div>
+    </a>
   </div>
+</section>
 
-  <div class="two-col" id="grid">
-
-    <!-- ══ EPF ══ -->
-    <div class="epf">
-      <div class="col-title epf">
-        <div class="col-title-left">
-          <span class="col-sigla">EPF</span>
-          <span class="col-sub">Escrivão de Polícia Federal</span>
-        </div>
-        <span class="col-badge">Escrivão</span>
-      </div>
-      <div class="col-grid">
-
-        <a class="mat-card avail epf" href="https://cfp2026anp.github.io/EPF-M1.1-Sobreaviso/" target="_blank">
-          <i class="ti ti-file-alert card-icon" aria-hidden="true"></i>
-          <div class="card-info">
-            <span class="card-code">M1.1</span>
-            <span class="card-name">Ocorrências de Sobreaviso</span>
-            <span class="card-weeks">Semana 3 → Semana 6</span>
-            <span class="tag disp">Disponível</span>
-          </div>
-        </a>
-
-        <a class="mat-card avail epf" href="https://cfp2026anp.github.io/EPF-M2.1-Levantamento-Endereco/" target="_blank">
-          <i class="ti ti-map-pin card-icon" aria-hidden="true"></i>
-          <div class="card-info">
-            <span class="card-code">M2.1</span>
-            <span class="card-name">Levantamento de Endereço (Eleitoral)</span>
-            <span class="card-weeks">Semana 4 → Semana 4</span>
-            <span class="tag disp">Disponível</span>
-          </div>
-        </a>
-
-        <a class="mat-card avail epf" href="https://cfp2026anp.github.io/EPF-M3.1-Fonte-Humana/" target="_blank">
-          <i class="ti ti-user-search card-icon" aria-hidden="true"></i>
-          <div class="card-info">
-            <span class="card-code">M3.1</span>
-            <span class="card-name">Fonte Humana</span>
-            <span class="card-weeks">Semana 4 → Semana 4</span>
-            <span class="tag disp">Disponível</span>
-          </div>
-        </a>
-
-        <div class="mat-card off">
-          <i class="ti ti-circle-off card-icon" aria-hidden="true"></i>
-          <div class="card-info">
-            <span class="card-code">M2.2</span>
-            <span class="card-name">Vigilância e Prisão (Eleitoral)</span>
-            <span class="card-weeks">Semana 5 → Semana 5</span>
-            <span class="tag nao">Não iniciado</span>
-          </div>
-        </div>
-
-        <div class="mat-card off">
-          <i class="ti ti-circle-off card-icon" aria-hidden="true"></i>
-          <div class="card-info">
-            <span class="card-code">M3.2</span>
-            <span class="card-name">Planejamento da Vigilância</span>
-            <span class="card-weeks">Semana 5 → Semana 5</span>
-            <span class="tag nao">Não iniciado</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ══ DPF ══ -->
-    <div class="dpf">
-      <div class="col-title dpf">
-        <div class="col-title-left">
-          <span class="col-sigla">DPF</span>
-          <span class="col-sub">Delegado de Polícia Federal</span>
-        </div>
-        <span class="col-badge">Delegado</span>
-      </div>
-      <div class="col-grid">
-
-        <a class="mat-card avail dpf" href="https://cfp2026anp.github.io/DPF-M1.1-Sobreaviso/" target="_blank">
-          <i class="ti ti-file-alert card-icon" aria-hidden="true"></i>
-          <div class="card-info">
-            <span class="card-code">M1.1</span>
-            <span class="card-name">Sobreaviso</span>
-            <span class="card-weeks">Semana 4 → Semana 4</span>
-            <span class="tag disp">Disponível</span>
-          </div>
-        </a>
-
-        <a class="mat-card avail dpf" href="https://cfp2026anp.github.io/DPF-M3.1-Fonte-Humana/" target="_blank">
-          <i class="ti ti-user-search card-icon" aria-hidden="true"></i>
-          <div class="card-info">
-            <span class="card-code">M3.1</span>
-            <span class="card-name">Fonte Humana</span>
-            <span class="card-weeks">Semana 4 → Semana 5</span>
-            <span class="tag disp">Disponível</span>
-          </div>
-        </a>
-
-        <div class="mat-card off">
-          <i class="ti ti-circle-off card-icon" aria-hidden="true"></i>
-          <div class="card-info">
-            <span class="card-code">M2.1</span>
-            <span class="card-name">Vigilância e Prisão (Eleitoral)</span>
-            <span class="card-weeks">Semana 5 → Semana 5</span>
-            <span class="tag nao">Não iniciado</span>
-          </div>
-        </div>
-
-        <div class="mat-card off">
-          <i class="ti ti-circle-off card-icon" aria-hidden="true"></i>
-          <div class="card-info">
-            <span class="card-code">M3.2</span>
-            <span class="card-name">Planejamento da Vigilância</span>
-            <span class="card-weeks">Semana 5 → Semana 5</span>
-            <span class="tag nao">Não iniciado</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
+<!-- ===== EPF ===== -->
+<section class="view" id="view-epf">
+  <div class="view-head"><div class="wrap">
+    <button class="back" onclick="voltar()"><i class="ti ti-arrow-left"></i> Voltar</button>
+    <div class="view-title"><b>EPF</b><span>Escrivão de Polícia Federal</span></div>
+  </div></div>
+  <div class="files">
+    <a class="file" href="https://cfp2026anp.github.io/EPF-M1.1-Sobreaviso/" target="_blank">
+      <div class="fcode">M1.1</div><div class="fbody"><div class="fname">Ocorrências de Sobreaviso</div>
+      <div class="fweeks">Semana 3 → Semana 6</div><span class="badge ok">Disponível</span></div>
+      <i class="ti ti-file-alert ricon"></i></a>
+    <a class="file" href="https://cfp2026anp.github.io/EPF-M2.1-Levantamento-Endereco/" target="_blank">
+      <div class="fcode">M2.1</div><div class="fbody"><div class="fname">Levantamento de Endereço (Eleitoral)</div>
+      <div class="fweeks">Semana 4 → Semana 4</div><span class="badge ok">Disponível</span></div>
+      <i class="ti ti-map-pin ricon"></i></a>
+    <a class="file" href="https://cfp2026anp.github.io/EPF-M3.1-Fonte-Humana/" target="_blank">
+      <div class="fcode">M3.1</div><div class="fbody"><div class="fname">Fonte Humana</div>
+      <div class="fweeks">Semana 4 → Semana 4</div><span class="badge ok">Disponível</span></div>
+      <i class="ti ti-user-search ricon"></i></a>
+    <div class="file locked">
+      <div class="fcode">M2.2</div><div class="fbody"><div class="fname">Vigilância e Prisão (Eleitoral)</div>
+      <div class="fweeks">Semana 5 → Semana 5</div><span class="badge no">Não iniciado</span></div>
+      <i class="ti ti-lock ricon"></i></div>
+    <div class="file locked">
+      <div class="fcode">M3.2</div><div class="fbody"><div class="fname">Planejamento da Vigilância</div>
+      <div class="fweeks">Semana 5 → Semana 5</div><span class="badge no">Não iniciado</span></div>
+      <i class="ti ti-lock ricon"></i></div>
   </div>
-</div>
+  <div class="view-foot">Material restrito ao uso dos professores · CFP 2026</div>
+</section>
 
-<footer>
-  CFP 2026 · DIREN-ANP · Polícia Federal — Material restrito ao uso dos professores
-</footer>
+<!-- ===== DPF ===== -->
+<section class="view" id="view-dpf">
+  <div class="view-head"><div class="wrap">
+    <button class="back" onclick="voltar()"><i class="ti ti-arrow-left"></i> Voltar</button>
+    <div class="view-title"><b>DPF</b><span>Delegado de Polícia Federal</span></div>
+  </div></div>
+  <div class="files">
+    <a class="file" href="https://cfp2026anp.github.io/DPF-M1.1-Sobreaviso/" target="_blank">
+      <div class="fcode">M1.1</div><div class="fbody"><div class="fname">Sobreaviso</div>
+      <div class="fweeks">Semana 4 → Semana 4</div><span class="badge ok">Disponível</span></div>
+      <i class="ti ti-file-alert ricon"></i></a>
+    <a class="file" href="https://cfp2026anp.github.io/DPF-M3.1-Fonte-Humana/" target="_blank">
+      <div class="fcode">M3.1</div><div class="fbody"><div class="fname">Fonte Humana</div>
+      <div class="fweeks">Semana 4 → Semana 5</div><span class="badge ok">Disponível</span></div>
+      <i class="ti ti-user-search ricon"></i></a>
+    <div class="file locked">
+      <div class="fcode">M2.1</div><div class="fbody"><div class="fname">Vigilância e Prisão (Eleitoral)</div>
+      <div class="fweeks">Semana 5 → Semana 5</div><span class="badge no">Não iniciado</span></div>
+      <i class="ti ti-lock ricon"></i></div>
+    <div class="file locked">
+      <div class="fcode">M3.2</div><div class="fbody"><div class="fname">Planejamento da Vigilância</div>
+      <div class="fweeks">Semana 5 → Semana 5</div><span class="badge no">Não iniciado</span></div>
+      <i class="ti ti-lock ricon"></i></div>
+  </div>
+  <div class="view-foot">Material restrito ao uso dos professores · CFP 2026</div>
+</section>
 
 <script>
-function filtrarCargo(cargo, btn) {
-  // Atualiza botão ativo
-  document.querySelectorAll('.filter-btn').forEach(b => b.className = 'filter-btn');
-  btn.classList.add('active-' + cargo);
-
-  var epfCol = document.querySelector('.epf');
-  var dpfCol = document.querySelector('.dpf');
-  var grid   = document.getElementById('grid');
-
-  if (cargo === 'epf') {
-    epfCol.classList.remove('col-hidden');
-    dpfCol.classList.add('col-hidden');
-    grid.style.gridTemplateColumns = '1fr';
-  } else {
-    epfCol.classList.add('col-hidden');
-    dpfCol.classList.remove('col-hidden');
-    grid.style.gridTemplateColumns = '1fr';
-  }
-}
-
-// Inicia com EPF visível e DPF oculto
-window.onload = function() {
-  document.querySelector('.dpf').classList.add('col-hidden');
-  document.getElementById('grid').style.gridTemplateColumns = '1fr';
-};
+function abrir(c){document.getElementById('home').style.display='none';
+  document.getElementById('view-'+c).classList.add('active');window.scrollTo(0,0)}
+function voltar(){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('home').style.display='flex';window.scrollTo(0,0)}
 </script>
 </body>
 </html>
